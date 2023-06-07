@@ -11,4 +11,7 @@ datasource db {
 model PhysicalActivitie {
   id    Int     @default(autoincrement()) @id
   title String
+  type String
+  finished Boolean @default(false)
+  createdAt DateTime @default(now())
 }
