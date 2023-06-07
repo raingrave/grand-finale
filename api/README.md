@@ -1,10 +1,10 @@
-## Installation
+## Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Rodar aplicação
 
 ```bash
 # development
