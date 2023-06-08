@@ -28,6 +28,14 @@ export class UsersService {
     })
   }
 
+  async findUser(email: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    })
+  }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.prisma.user.update({
       data: updateUserDto,
