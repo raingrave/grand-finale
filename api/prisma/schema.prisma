@@ -8,14 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model PhysicalActivitie {
-  id    Int     @default(autoincrement()) @id
-  title String
-  type String
-  finished Boolean @default(false)
-  createdAt DateTime @default(now())
-}
-
 model User {
   id    Int     @default(autoincrement()) @id
   name String
@@ -23,5 +15,13 @@ model User {
   age Int
   weight Float
   password String 
+  createdAt DateTime @default(now())
+}
+
+model PhysicalActivitie {
+  id    Int     @default(autoincrement()) @id
+  title String
+  type String
+  finished Boolean @default(false)
   createdAt DateTime @default(now())
 }
