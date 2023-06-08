@@ -8,63 +8,62 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cadastro de Usuário',
+      title: 'Cadastro de Exercício',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: RegistrationScreen(),
+      home: RegistrationScreenExercise(),
     );
   }
 }
 
-class RegistrationScreen extends StatefulWidget {
+class RegistrationScreenExercise extends StatefulWidget {
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _RegistrationScreenExerciseState createState() => _RegistrationScreenExerciseState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+class _RegistrationScreenExerciseState extends State<RegistrationScreenExercise> {
+  TextEditingController _nomeExercicioController = TextEditingController();
+  TextEditingController _tipoExercicioController = TextEditingController();
+  TextEditingController _statusExercicioController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Usuário'),
+        title: Text('Cadastro de Exercício'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
-              controller: _nameController,
+              controller: _nomeExercicioController,
               decoration: InputDecoration(
-                labelText: 'Nome',
+                labelText: 'Nome do exercício',
               ),
             ),
             SizedBox(height: 12.0),
             TextField(
-              controller: _emailController,
+              controller: _tipoExercicioController,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: 'Tipo do exercício',
               ),
             ),
             SizedBox(height: 12.0),
             TextField(
-              controller: _passwordController,
+              controller: _statusExercicioController,
               decoration: InputDecoration(
-                labelText: 'Senha',
+                labelText: 'Status do exercício',
               ),
             ),
             SizedBox(height: 24.0),
             ElevatedButton(
-              onPressed: () {
-                showDialog(
+              onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('Cadastro realizado com sucesso'),
+                      title: Text('Exercício cadastrado com sucesso'),
                       actions: [
                         TextButton(
                           onPressed: () {
@@ -75,8 +74,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ],
                     );
                   },
-                );
-              },
+                ),
               child: Text('Cadastrar'),
             ),
           ],

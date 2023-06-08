@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(const Fidelio());
+}
+
 class Fidelio extends StatelessWidget {
   const Fidelio({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fidelio',
+      title: "Fidelio",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black, background: Colors.deepOrange),
         useMaterial3: true,
@@ -70,17 +74,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    print('pressed');
-                  },
-                  child: const Text(
-                    'Entrar',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
-                  ))
-            ],
+          SizedBox(height: 24.0),
+          ElevatedButton(
+            onPressed: () {
+            },
+            child: Text('Entrar'),
           ),
+          ],
         )// This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ));
   }
 }
