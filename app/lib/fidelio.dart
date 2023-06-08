@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grand_finale/cadastro_usuario.dart';
 
 void main() {
   runApp(const Fidelio());
@@ -79,6 +80,15 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
             },
             child: Text('Entrar'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              print(this);
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => RegistrationScreen())
+              );
+            },
+            child: Text('Cadastrar'),
           ),
           ],
         )// This trailing comma makes auto-formatting nicer for build methods.
