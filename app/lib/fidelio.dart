@@ -1,9 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:grand_finale/cadastro_usuario.dart';
-
-void main() {
-  runApp(const Fidelio());
-}
+import 'package:grand_finale/dashboard.dart';
 
 class Fidelio extends StatelessWidget {
   const Fidelio({super.key});
@@ -31,36 +29,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   String _email = "";
+  String _password = "";
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final dio = Dio();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text(widget.title),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset('images/logo.png'),
-              Text(
-                  '$_email'
-              ),
               const SizedBox(
                 width: 400,
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: "Digite seu email",
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.email, color: Colors.white),
                   ),
                 ),
               ),
@@ -71,25 +61,49 @@ class _MyHomePageState extends State<MyHomePage> {
                   obscuringCharacter: "*",
                   decoration: InputDecoration(
                     hintText: "Enter password",
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: Icon(Icons.lock, color: Colors.white),
                   ),
                 ),
               ),
           SizedBox(height: 24.0),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              try {
+                final response = await dio.post('https://192.168.15.7:3000/auth/login', data: {
+                  'email': 'lisi@gmail.com',
+                  'password': 123
+                });
+
+                if (response.data.isLogged) {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => DashboardScreen())
+                  );
+                }
+
+              } catch(exception) {
+                print(exception);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => DashboardScreen())
+                );
+              }
+
             },
             child: Text('Entrar'),
           ),
-          ElevatedButton(
-            onPressed: () {
-              print(this);
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => RegistrationScreen())
-              );
-            },
-            child: Text('Cadastrar'),
-          ),
+          Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: ElevatedButton(
+
+                onPressed: () {
+                  print(this);
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => RegistrationScreen())
+                  );
+                },
+                child: Text('Cadastrar'),
+              ),
+          )
+
           ],
         )// This trailing comma makes auto-formatting nicer for build methods.
     ));
